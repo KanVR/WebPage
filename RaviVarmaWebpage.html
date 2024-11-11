@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ravi Varma Kanumuri - Personal Webpage</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #F0F2F5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #30475E;
+            color: #F9FAFB;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        header h1 {
+            font-size: 2.5em;
+            letter-spacing: 1px;
+            margin: 10px 0;
+        }
+        header p {
+            font-size: 1.1em;
+            color: #C6D0DA;
+        }
+        
+    /* Updated navigation styling */
+    nav {
+        position: absolute;
+        top: 150px; /* Adjust to position below the header */
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 30px;
+        background-color: #30475E;
+    }
+    nav a {
+        color: #ffffff;
+        padding: 15px 20px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    nav a:hover {
+        background-color: #95bbe1;
+        color: #30475E;
+    }
+
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 80px auto;
+            flex: 1;
+        }
+        section {
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        section.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        h2 {
+            color: #30475E;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        .project, .skills ul, .experience {
+            background-color: #FFF;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .project a {
+            display: inline-block;
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+        /* Skills and Experience Styling */
+        .skills {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            margin-bottom: 20px;
+        }
+        .skills-card, .experience-card {
+            background-color: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s;
+        }
+        .skills-card:hover, .experience-card:hover {
+            transform: translateY(-5px);
+        }
+        .skills-card img, .experience-card img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 10px;
+        }
+        .skills-card h4, .experience-card h4 {
+            font-size: 1.1em;
+            color: #30475E;
+            margin-top: 10px;
+        }
+        /* Wider Experience Card Layout */
+        .experience {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Wider cards */
+            gap: 20px;
+        }
+        .experience-card {
+            display: flex;
+            align-items: flex-start;
+            text-align: left;
+            padding: 20px;
+            width: 100%; /* Occupy full width within the grid */
+        }
+        .experience-card img {
+            margin-right: 15px; /* Separate icon from text */
+        }
+        .experience-card-content {
+            display: flex;
+            flex-direction: column;
+        }
+        .experience-card h4 {
+            margin-bottom: 8px;
+        }
+        .experience-card p {
+            font-size: 0.95em;
+            line-height: 1.6;
+            color: #666;
+        }
+        footer {
+            text-align: center;
+            padding: 15px 0;
+            background-color: #22303C;
+            color: #F9FAFB;
+        }
+        footer a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            nav a {
+                padding: 10px 15px;
+            }
+            .experience {
+                grid-template-columns: 1fr; /* Full width on smaller screens */
+            }
+        }
+        /* Contact Section Styling */
+#contact {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #30475E;
+    color: #F9FAFB;
+    border-radius: 8px;
+}
+#contact h2 {
+    font-size: 1.8em;
+    color: #F9FAFB;
+    margin-bottom: 20px;
+}
+#contact p {
+    font-size: 1.1em;
+    color: #C6D0DA;
+    margin-bottom: 30px;
+}
+.contact-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.contact-card {
+    background-color: #F9FAFB;
+    color: #30475E;
+    width: 200px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+.contact-card img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+}
+.contact-card h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+.contact-card a {
+    color: #007BFF;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.contact-card a:hover {
+    color: #0056b3;
+}
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Ravi Varma Kanumuri</h1>
+    <p>Computer Science and Information Systems, M.S. </p>
+</header>
+
+<nav>
+    <a href="#about">About Me</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<div class="container">
+    <!-- About Me Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Hello! I'm Ravi Varma Kanumuri, a Masters student at the University of North Carolina at Wilmington specializing in Data Analytics and Software Engineering. I'm eager to contribute to innovative projects while continuously learning and developing my skills. My experience spans both backend and frontend development, and I’m excited to apply my skills to real-world applications.</p>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills">
+            <div class="skills-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="JavaScript Icon">
+                <h4>JavaScript</h4>
+            </div>
+            <div class="skills-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/1126/1126012.png" alt="React Icon">
+                <h4>React</h4>
+            </div>
+            <div class="skills-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/919/919825.png" alt="Node.js Icon">
+                <h4>Node.js</h4>
+            </div>
+            <div class="skills-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Python Icon">
+                <h4>Python</h4>
+            </div>
+            <div class="skills-card">
+                <img src="https://banner2.cleanpng.com/20180411/wre/avf0mauoj.webp" alt="SQL Icon">
+                <h4>SQL</h4>
+            </div>
+            <div class="skills-card">
+                <img src="https://banner2.cleanpng.com/20180425/bxe/ave8vhl4c.webp" alt="Git Icon">
+                <h4>Git</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project">
+            <h3>Library Management System</h3>
+            <p>A web application that allows a librarian to check out items for patrons, renew memberships, and manage inventory. Built with React, Node.js, and MySQL.</p>
+            <a href="https://mis-565-front-end.vercel.app/" target="_blank">View Project</a>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="experience">
+            <div class="experience-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/1995/1995547.png" alt="Job Icon">
+                <div class="experience-card-content">
+                    <h4>Associate Systems Engineer</h4>
+                    <p>Resolved client issues, managed customer complaints, contributed to backend development, and collaborated with cross-functional teams for integration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information Section -->
+    <section id="contact">
+        <h2>Contact Information</h2>
+        <p>If you’d like to get in touch, feel free to reach out via email or LinkedIn!</p>
+        <div class="contact-cards">
+            <div class="contact-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email Icon">
+                <h3>Email</h3>
+                <a href="mailto:ravivarmak3618@gmail.com">Send Email</a>
+            </div>
+            <div class="contact-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn Icon">
+                <h3>LinkedIn</h3>
+                <a href="https://www.linkedin.com/in/ravi-kanumuri" target="_blank">Go to LinkedIn</a>
+            </div>
+        </div>
+    </section>
+    
+</div>
+
+<footer>
+    <p>© 2024 Ravi Varma Kanumuri | All Rights Reserved</p>
+    <button onclick="window.scrollTo({top:0, behavior:'smooth'})">Back To Top</button>
+</footer>
+
+<script>
+    // JavaScript for animation on scroll
+    const sections = document.querySelectorAll("section");
+    window.addEventListener("scroll", () => {
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                section.classList.add("in-view");
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
